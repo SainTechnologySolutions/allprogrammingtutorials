@@ -9,7 +9,7 @@
 		</layout>
 	</appender>
 
-	<logger name="org.apache.zookeeper.ZooKeeper">
+	<logger name="org.apache.zookeeper">
 		<level value="warn" />
 	</logger>
 

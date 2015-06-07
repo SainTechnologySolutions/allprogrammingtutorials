@@ -63,7 +63,9 @@ public class ProcessNode implements Runnable{
 	@Override
 	public void run() {
 		
-		System.out.println("Process with id: " + id + " has started!");
+		if(LOG.isInfoEnabled()) {
+			LOG.info("Process with id: " + id + " has started!");
+		}
 		
 		final String rootNodePath = zooKeeperService.createNode(LEADER_ELECTION_ROOT_NODE, false, false);
 		if(rootNodePath == null) {

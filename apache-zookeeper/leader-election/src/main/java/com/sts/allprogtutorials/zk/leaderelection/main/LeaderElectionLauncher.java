@@ -23,11 +23,17 @@ public class LeaderElectionLauncher {
 	
 	public static void main(String[] args) throws IOException {
 		
-		final String zkURL = "10.127.128.56:2181";
+		if(args.length < 2) {
+			System.err.println("Usage: java ");
+			System.exit(2);
+		}
+		
+		final int id = Integer.valueOf(args[0]);
+		final String zkURL = args[1];
 		
 		final ExecutorService service = Executors.newSingleThreadExecutor();
 		
-		final Future<?> status = service.submit(new ProcessNode(4, zkURL));
+		final Future<?> status = service.submit(new ProcessNode(id, zkURL));
 		
 		try {
 			status.get();
