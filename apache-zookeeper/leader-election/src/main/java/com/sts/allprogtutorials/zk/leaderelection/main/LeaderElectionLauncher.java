@@ -24,7 +24,7 @@ public class LeaderElectionLauncher {
 	public static void main(String[] args) throws IOException {
 		
 		if(args.length < 2) {
-			System.err.println("Usage: java ");
+			System.err.println("Usage: java -jar <jar_file_name> <process id integer> <zkhost:port pairs>");
 			System.exit(2);
 		}
 		
