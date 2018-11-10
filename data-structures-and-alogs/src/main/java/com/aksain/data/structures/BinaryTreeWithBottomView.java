@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-public class BinaryTreeWithTopView<T extends Comparable<T>> {
+public class BinaryTreeWithBottomView<T extends Comparable<T>> {
 	private Node root;
 
 	private class Node {
@@ -46,7 +46,7 @@ public class BinaryTreeWithTopView<T extends Comparable<T>> {
 		root = doInsert(data, root);
 	}
 
-	private void doPrintTopView(Node root) {
+	private void doPrintBottomView(Node root) {
 		final Map<Integer, T> distanceWiseData = new HashMap<>();
 		
 		final Queue<NodeWithDistance> queue = new LinkedList<>();
@@ -57,7 +57,7 @@ public class BinaryTreeWithTopView<T extends Comparable<T>> {
 			for(int index = 0; index < noOfElementsAtThisLevel; index++) {
 				final NodeWithDistance tmpWithDistance = queue.poll();
 				final Node tmp = tmpWithDistance.node;
-				distanceWiseData.putIfAbsent(tmpWithDistance.hDistance, tmp.data);
+				distanceWiseData.put(tmpWithDistance.hDistance, tmp.data);
 				
 				if(tmp.left != null) {
 					queue.add(new NodeWithDistance(tmp.left, tmpWithDistance.hDistance - 1));
@@ -71,12 +71,12 @@ public class BinaryTreeWithTopView<T extends Comparable<T>> {
 		System.out.println(distanceWiseData);
 	}
 
-	public void printTopView() {
-		doPrintTopView(root);
+	public void printBottomView() {
+		doPrintBottomView(root);
 	}
 
 	public static void main(String[] args) {
-		final BinaryTreeWithTopView<Integer> binaryTree = new BinaryTreeWithTopView<>();
+		final BinaryTreeWithBottomView<Integer> binaryTree = new BinaryTreeWithBottomView<>();
 		binaryTree.insert(50);
 		binaryTree.insert(30);
 		binaryTree.insert(10);
@@ -87,7 +87,7 @@ public class BinaryTreeWithTopView<T extends Comparable<T>> {
 		binaryTree.insert(80);
 		binaryTree.insert(90);
 
-		binaryTree.printTopView();
+		binaryTree.printBottomView();
 	}
 
 }
